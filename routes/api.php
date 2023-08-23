@@ -14,6 +14,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::group(
+    [
+        'prefix' => 'v1',
+        'namespace' => 'App\\Http\\Api\\V1\\Controllers'
+    ],
+    function () {
+        Route::group(
+            [
+                'prefix' => 'products',
+                'namespace' => 'Product'
+            ],
+            function () {
+                // Queries
+                Route::get('/', 'ProductController@index');
+
+                // Commands
+                Route::post('/', 'CommandController@store');
+                Route::put('/{id}', 'CommandController@update');
+                Route::delete('/{id}', 'CommandController@destroy');
+            }
+        );
+    }
+);
