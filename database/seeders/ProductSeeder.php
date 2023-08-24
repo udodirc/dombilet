@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ProductPrice;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
-    const ITEMS_COUNT = 10000;
+    const ITEMS_COUNT = 10;
     /**
      * Run the database seeds.
      */
@@ -16,7 +16,9 @@ class ProductSeeder extends Seeder
     {
         if(Product::all()->count() < self::ITEMS_COUNT)
         {
-            Product::factory(self::ITEMS_COUNT)->create();
+            Product::factory(self::ITEMS_COUNT)
+                ->has(ProductPrice::factory(2))
+                ->create();
         }
     }
 }
