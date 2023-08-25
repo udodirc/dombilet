@@ -32,11 +32,17 @@ Route::group(
             function () {
                 // Queries
                 Route::get('/', 'ProductController@index');
+            }
+        );
 
-                // Commands
-                Route::post('/', 'CommandController@store');
-                Route::put('/{id}', 'CommandController@update');
-                Route::delete('/{id}', 'CommandController@destroy');
+        Route::group(
+            [
+                'prefix' => 'product-prices',
+                'namespace' => 'ProductPrice'
+            ],
+            function () {
+                // Queries
+                Route::get('/', 'ProductPriceController@index');
             }
         );
     }
