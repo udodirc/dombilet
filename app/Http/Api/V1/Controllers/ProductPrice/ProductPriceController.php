@@ -33,7 +33,7 @@ class ProductPriceController extends BaseController
 
         $data = $request->validated();
 
-        if (!DBService::update(
+        if (!$this->productPriceRepository->update(
             $data,
             'product_prices',
             'price',

@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Models\ProductPrice;
+use App\Service\DBService;
 use Illuminate\Database\Eloquent\Collection;
 
 class ProductPriceRepository
@@ -25,5 +26,23 @@ class ProductPriceRepository
     {
         return ProductPrice::where(['product_id' => $id])
             ->get();
+    }
+
+    public function update(
+        array $data,
+        string $tableName,
+        string $setColumn,
+        string $whereColumn,
+        string $whenIndex,
+        string $valIndex): bool
+    {
+        return DBService::update(
+            $data,
+            $tableName,
+            $setColumn,
+            $whereColumn,
+            $whenIndex,
+            $valIndex
+        );
     }
 }
