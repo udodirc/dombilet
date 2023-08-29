@@ -20,4 +20,10 @@ class ProductPriceRepository
             ->with('product:id,name')
             ->get();
     }
+
+    public function findByProductID($id): Collection
+    {
+        return ProductPrice::where(['product_id' => $id])
+            ->get();
+    }
 }

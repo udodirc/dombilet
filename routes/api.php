@@ -43,6 +43,7 @@ Route::group(
             function () {
                 // Queries
                 Route::get('/', 'ProductPriceController@index');
+                Route::put('/{guid}', 'ProductPriceController@update');
             }
         );
     }
